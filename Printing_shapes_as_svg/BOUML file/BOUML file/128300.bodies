@@ -1,0 +1,69 @@
+class composedShape
+!!!130476.cpp!!!	setcontainerRect(inout output : ofstream, inout rect : Rectangle) : void
+	
+	double width,height;
+	width=rect.getRwidth();
+	height=rect.getRheight();
+	
+	*output<<R"(<svg version="1.1")"<<"\n"<<R"(baseProfile="full")"<<"\n"<<R"(width=")"<<width<<R"(" height=")"<<height<<R"(")"<<"\n";
+	*output<<R"(xmlns="http://www.w3.org/2000/svg">)";
+	*output<<R"(<rect width="100%" height="100%" fill="red" />)"<<"\n";
+!!!130604.cpp!!!	setcontainerTria(inout output : ofstream, inout tria : Triangle) : void
+	
+	double ax,ay,bx,by,cx,cy;
+	double width,height;
+	width=tria.getTriangle();
+	height=tria.heightofTriangle();
+	*output<<R"(<svg version="1.1")"<<"\n"<<R"(baseProfile="full")"<<"\n"<<R"(width=")"<<width<<R"(" height=")"<<height<<R"(")"<<"\n";
+	*output<<R"(xmlns="http://www.w3.org/2000/svg">)";
+	ax=tria.getTriangle()/2;
+	ay=0;
+	bx=0;
+	by=tria.heightofTriangle();
+	cx=tria.getTriangle();
+	cy=tria.heightofTriangle();
+	tria.setTriangle(width,ax,ay,bx,by,cx,cy);
+	*output<<R"(<polygon points=")"<<ax<<","<<ay<<" "<<bx<<","<<by<<" "<<cx<<","<<cy;
+	*output<<R"(" fill="red"/>)"<<"\n";
+!!!130732.cpp!!!	setcontainerCirc(inout output : ofstream, inout circ : Circle) : void
+	
+	double x,y,radius;
+	double width,height;
+	width=circ.getCircle()*2;
+	height=circ.getCircle()*2;
+	*output<<R"(<svg version="1.1")"<<"\n"<<R"(baseProfile="full")"<<"\n"<<R"(width=")"<<width<<R"(" height=")"<<height<<R"(")"<<"\n";
+	*output<<R"(xmlns="http://www.w3.org/2000/svg">)";
+	x=circ.getCircle();
+	y=circ.getCircle();
+	radius=circ.getCircle();
+	circ.setCircle(radius,x,y);
+	*output<<R"(<circle cx=")"<<x;
+	*output<<R"(" cy=")"<<y;
+	*output<<R"(" cr=")"<<radius;
+	*output<<R"(" fill="red" />)"<<"\n";
+!!!130860.cpp!!!	finishShape(inout output : ofstream) : void
+	*output<<R"(</svg>)";
+!!!130988.cpp!!!	area() : double
+	return 0;
+!!!131116.cpp!!!	perimeter() : double
+	return 0;
+!!!131244.cpp!!!	add_elements(inout newshape : Shape) : void
+	elements.push_back(newshape);
+!!!131372.cpp!!!	printAll(inout output : ofstream) : void
+	for(int i=(int)elements.size()-1; i>=0; i--){
+		elements[i]->print(output);
+		cout<<elements[i]->area()<<endl;
+	}
+!!!131500.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	return file;
+!!!131628.cpp!!!	sortShapes() : void
+	Shape * temp;
+	for(int i=0; i<(int)elements.size(); i++){
+		for(int j=i; j<(int)elements.size(); j++){
+			if(elements[i]->area()>elements[j]->area()){
+				temp=elements[i];
+				elements[i]=elements[j];
+				elements[j]=temp;
+			}
+		}
+	}

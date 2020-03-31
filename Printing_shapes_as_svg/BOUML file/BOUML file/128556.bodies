@@ -1,0 +1,105 @@
+class Triangle
+!!!137772.cpp!!!	Triangle(in side : double)
+	tside=side;
+!!!137900.cpp!!!	Triangle(in side : double, in x : double, in y : double)
+	tside=side;
+	ax=x;
+	ay=y;
+	bx=x-side/2;
+	by=y+heightofTriangle();
+	cx=x+side/2;
+	cy=y+heightofTriangle();
+!!!138028.cpp!!!	setTriangle(in side : double, in a1x : double, in a1y : double, in a2x : double, in a2y : double, in a3x : double, in a3y : double) : void
+	tside=side;
+	ax=a1x;
+	ay=a1y;
+	bx=a2x;
+	by=a2y;
+	cx=a3x;
+	cy=a3y;
+!!!138156.cpp!!!	getTriangle() : double
+	return tside;
+!!!138284.cpp!!!	getax() : double
+	return ax;
+!!!138412.cpp!!!	getay() : double
+	return ay;
+!!!138540.cpp!!!	getbx() : double
+	return bx;
+!!!138668.cpp!!!	getby() : double
+	return by;
+!!!138796.cpp!!!	getcx() : double
+	return cx;
+!!!138924.cpp!!!	getcy() : double
+	return cy;
+!!!139052.cpp!!!	heightofTriangle() : double
+	return tside*sqrt(3)/2.0;
+!!!139180.cpp!!!	area() : double
+	return tside*tside*sqrt(3)/4.0;
+!!!139308.cpp!!!	perimeter() : double
+	return 3*tside;
+!!!139436.cpp!!!	setTria(in side : double) : void
+	tside=side;
+!!!139564.cpp!!!	operator +(in number : double) : Triangle
+	Triangle newtria(tside);
+	newtria.tside+=number;
+	newtria.theight=newtria.heightofTriangle();
+	return newtria;
+!!!139692.cpp!!!	operator -(in number : double) : Triangle
+	Triangle newtria(tside);
+	newtria.tside-=number;
+	newtria.theight=newtria.heightofTriangle();
+	if(newtria.tside<=0){
+		newtria=newtria+number;
+		newtria.theight=newtria.heightofTriangle();
+	}
+	return newtria;
+!!!139820.cpp!!!	operator ++() : void
+	++ax;
+	++ay;
+	++bx;
+	++by;
+	++cx;
+	++cy;
+!!!139948.cpp!!!	operator ++(in  : int) : Triangle
+	Triangle oldtria(tside);
+	oldtria.setTriangle(tside,ax,ay,bx,by,cx,cy);
+	++ax;
+	++ay;
+	++bx;
+	++by;
+	++cx;
+	++cy;
+	return oldtria;
+!!!140076.cpp!!!	operator --() : void
+	--ax;
+	--ay;
+	--bx;
+	--by;
+	--cx;
+	--cy;
+!!!140204.cpp!!!	operator --(in  : int) : Triangle
+	Triangle oldtria(tside);
+	oldtria.setTriangle(tside,ax,ay,bx,by,cx,cy);
+	--ax;
+	--ay;
+	--bx;
+	--by;
+	--cx;
+	--cy;
+	return oldtria;
+!!!140332.cpp!!!	operator ==(inout tria1 : Triangle) : bool
+	if(tside==tria1.tside){
+		return true;
+	}
+	return false;
+!!!140460.cpp!!!	operator !=(inout tria1 : Triangle) : bool
+	if(tside!=tria1.tside){
+		return true;
+	}
+	return false;
+!!!140588.cpp!!!	operator <<(inout file : std::ofstream, inout tria : Triangle) : std::ofstream
+	file<<R"(<polygon points=")"<<tria.ax<<","<<tria.ay<<" "<<tria.bx<<","<<tria.by<<" "<<tria.cx<<","<<tria.cy<<R"(" fill="purple"/>)"<<"\n";
+	return file;
+!!!140716.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	file<<*this;
+	return file;

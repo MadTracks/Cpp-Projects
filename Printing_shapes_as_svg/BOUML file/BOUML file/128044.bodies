@@ -1,0 +1,66 @@
+class Circle
+!!!128044.cpp!!!	Circle(in radius : double)
+	cradius=radius;
+!!!128172.cpp!!!	Circle(in radius : double, in x : double, in y : double)
+	cradius=radius;
+	cx=x;
+	cy=y;
+!!!128300.cpp!!!	setCircle(in radius : double, in x : double, in y : double) : void
+	cradius=radius;
+	cx=x;
+	cy=y;
+!!!128428.cpp!!!	getCircle() : double
+	return cradius;
+!!!128556.cpp!!!	getcx() : double
+	return cx;
+!!!128684.cpp!!!	getcy() : double
+	return cy;
+!!!128812.cpp!!!	area() : double
+	return M_PI*cradius*cradius;
+!!!128940.cpp!!!	perimeter() : double
+	return 2.0*cradius*M_PI;
+!!!129068.cpp!!!	setCirc(in radius : double) : void
+	cradius=radius;
+!!!129196.cpp!!!	operator +(in number : double) : Circle
+	cradius+=number;
+	return *this;
+!!!129324.cpp!!!	operator -(in number : double) : Circle
+	cradius-=number;
+	if(cradius<=0){
+		cradius=0;
+	}
+	return *this;
+!!!129452.cpp!!!	operator ++() : void
+	++cx;
+	++cy;
+!!!129580.cpp!!!	operator ++(in  : int) : Circle
+	Circle oldCirc(cradius);
+	oldCirc.setCircle(cradius,cx,cy);
+	++cx;
+	++cy;
+	return oldCirc;
+!!!129708.cpp!!!	operator --() : void
+	--cx;
+	--cy;
+!!!129836.cpp!!!	operator --(in  : int) : Circle
+	Circle oldCirc(cradius);
+	oldCirc.setCircle(cradius,cx,cy);
+	--cx;
+	--cy;
+	return oldCirc;
+!!!129964.cpp!!!	operator ==(inout circ1 : Circle) : bool
+	if(this->area()==circ1.area()){
+		return true;
+	}
+	return false;
+!!!130092.cpp!!!	operator !=(inout circ1 : Circle) : bool
+	if(this->area()!=circ1.area()){
+		return true;
+	}
+	return false;
+!!!130220.cpp!!!	operator <<(inout file : std::ofstream, inout circ : Circle) : std::ofstream
+	file<<R"(<circle cx=")"<<circ.cx<<R"(" cy=")"<<circ.cy<<R"(" r=")"<<circ.cradius<<R"(" fill="yellow" />)"<<"\n";
+	return file;
+!!!130348.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	file<<*this;
+	return file;

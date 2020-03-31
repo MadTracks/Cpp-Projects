@@ -1,0 +1,20 @@
+class PolygonVect
+!!!133420.cpp!!!	PolygonVect()
+	Polygon::Point2D point;
+	point.setpx(100);
+	point.setpy(150);
+	vpoint.push_back(point);
+!!!133548.cpp!!!	getvectorsize() : int
+	return vpoint.size();
+!!!133676.cpp!!!	area() : double
+	return 0;
+!!!133804.cpp!!!	perimeter() : double
+	return 0;
+!!!133932.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	int i;
+	file<<R"(<polygon points=")";
+	for(i=0;i<(int)vpoint.size();i++){
+		file<<vpoint[i].getpx()<<","<<vpoint[i].getpy()<<" ";
+	}
+	file<<R"(" fill="green"/>)"<<"\n";
+	return file;

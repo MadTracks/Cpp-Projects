@@ -1,0 +1,76 @@
+class Rectangle
+!!!134060.cpp!!!	Rectangle(in height : double, in width : double)
+	rheight=height;
+	rwidth=width;
+!!!134188.cpp!!!	Rectangle(in height : double, in width : double, in x : double, in y : double)
+	rheight=height;
+	rwidth=width;
+	rx=x;
+	ry=y;
+!!!134316.cpp!!!	setRectangle(in height : double, in width : double, in x : double, in y : double) : void
+	rheight=height;
+	rwidth=width;
+	rx=x;
+	ry=y;
+!!!134444.cpp!!!	getRheight() : double
+	return rheight;
+!!!134572.cpp!!!	getRwidth() : double
+	return rwidth;
+!!!134700.cpp!!!	getrx() : double
+	return rx;
+!!!134828.cpp!!!	getry() : double
+	return ry;
+!!!134956.cpp!!!	area() : double
+	return rheight*rwidth;
+!!!135084.cpp!!!	perimeter() : double
+	return 2*rheight+2*rwidth;
+!!!135212.cpp!!!	setRect(in height : double, in width : double) : void
+	rheight=height;
+	rwidth=width;
+!!!135340.cpp!!!	operator +(in number : double) : Rectangle
+	Rectangle newrect(rheight,rwidth);
+	newrect.rheight+=number;
+	newrect.rwidth+=number;
+	return newrect;
+!!!135468.cpp!!!	operator -(in number : double) : Rectangle
+	Rectangle newrect(rheight,rwidth);
+	newrect.rheight-=number;
+	newrect.rwidth-=number;
+	if(newrect.rheight<=0 || newrect.rwidth<=0){
+		newrect=newrect+number;
+	}
+	return newrect;
+!!!135596.cpp!!!	operator ++() : void
+	++rx;
+	++ry;
+!!!135724.cpp!!!	operator ++(in  : int) : Rectangle
+	Rectangle oldrect(rheight,rwidth);
+	oldrect.setRectangle(rheight,rwidth,rx,ry);
+	++rx;
+	++ry;
+	return oldrect;
+!!!135852.cpp!!!	operator --() : void
+	--rx;
+	--ry;
+!!!135980.cpp!!!	operator --(in  : int) : Rectangle
+	Rectangle oldrect(rheight,rwidth);
+	oldrect.setRectangle(rheight,rwidth,rx,ry);
+	--rx;
+	--ry;
+	return oldrect;
+!!!136108.cpp!!!	operator ==(inout rect1 : Rectangle) : bool
+	if(rwidth==rect1.rwidth && rheight==rect1.rheight){
+		return true;
+	}
+	return false;
+!!!136236.cpp!!!	operator !=(inout rect1 : Rectangle) : bool
+	if(rwidth!=rect1.rwidth || rheight!=rect1.rheight){
+		return true;
+	}
+	return false;
+!!!136364.cpp!!!	operator <<(inout file : std::ofstream, inout rect : Rectangle) : std::ofstream
+	file<<R"(<rect width=")"<<rect.rwidth<<R"(" height=")"<<rect.rheight<<R"(" x=")"<<rect.rx<<R"(" y=")"<<rect.ry<<R"(" fill="blue" />)"<<"\n";
+	return file;
+!!!136492.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	file<<*this;
+	return file;

@@ -1,0 +1,25 @@
+class PolygonDyn
+!!!132524.cpp!!!	PolygonDyn()
+	size=1;
+	points=new Point2D[size];
+	points[0].setpx(4);
+	points[0].setpy(5);
+
+!!!132652.cpp!!!	~PolygonDyn()
+	delete[]points;
+!!!132780.cpp!!!	getSize() : int
+	return size;
+!!!132908.cpp!!!	operator [](in index : int) : Point2D
+	return points[index];
+!!!133036.cpp!!!	area() : double
+	return 0;
+!!!133164.cpp!!!	perimeter() : double
+	return 0;
+!!!133292.cpp!!!	print(inout file : std::ofstream) : std::ofstream
+	int i;
+	file<<R"(<polygon points=")";
+	for(i=0;i<size;i++){
+		file<<points[i].getpx()<<","<<points[i].getpy()<<" ";
+	}
+	file<<R"(" fill="green"/>)"<<"\n";
+	return file;

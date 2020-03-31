@@ -1,0 +1,15 @@
+class Point2D
+!!!131756.cpp!!!	Point2D(in x : double, in y : double)
+	px=x;
+	py=y;
+!!!131884.cpp!!!	Point2D()
+	px=1;
+	py=1;
+!!!132012.cpp!!!	setpx(in x : double) : void
+	px=x;
+!!!132140.cpp!!!	setpy(in y : double) : void
+	py=y;
+!!!132268.cpp!!!	getpx() : double
+	return px;
+!!!132396.cpp!!!	getpy() : double
+	return py;
